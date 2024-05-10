@@ -34,5 +34,35 @@ router.post("/create", authMiddleware, async (req, res) => {
   res.status(200).json({ assignment });
 });
 //view assignment
-router.get("/view", authMiddleware, async (req, res) => {});
+router.get("/view", authMiddleware, async (req, res) => {
+  try {
+    const assignments = await Assignment.find({
+      teacherId: req.userId,
+    });
+    res.json({
+      assignments: assignments,
+    });
+  } catch (error) {
+    console.error("Error fetching assignments:", error);
+    res.status(500).json({ message: "Error fetching assignments" });
+  }
+});
+
+//view particular assignment
+router.get("/view/:Qno", authMiddleware, async (req, res) => {
+  const assignmentId = req.params.Qno;
+
+  try {
+    const assignment = await Assignment.findOne({
+      _id: assignmentId,
+    });
+    if (!assignment) {
+      return res.status(404).json({ message: "Assignment not found" });
+    }
+    res.json({ assignment });
+  } catch (error) {
+    console.error("Error fetching assignment:", error);
+    res.status(500).json({ message: "Error fetching assignment" });
+  }
+});
 module.exports = router;

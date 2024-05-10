@@ -32,6 +32,11 @@ const TeacherSchema = new mongoose.Schema({
 });
 
 const StudentSchema = new mongoose.Schema({
+  mailId: {
+    type: String,
+    required: true,
+    lowercase: true,
+  },
   username: {
     type: String,
     minLength: 3,
