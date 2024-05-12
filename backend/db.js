@@ -93,6 +93,9 @@ const AssignmentSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  deadline: {
+    type: Date,
+  },
 });
 
 const AnswerSchema = new mongoose.Schema({
@@ -123,6 +126,10 @@ const AnswerSchema = new mongoose.Schema({
   ],
   plagarismReport: {
     type: Number,
+  },
+  time: {
+    type: Date,
+    required: true,
   },
 });
 

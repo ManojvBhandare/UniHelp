@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { authMiddleware } = require("../middleware");
 const { z } = require("zod");
-const { Assignment } = require("../db");
+const { Assignment, Answers } = require("../db");
 const { default: mongoose } = require("mongoose");
 const questionBody = z.object({
   questionNumber: z.number(),
@@ -23,7 +23,15 @@ router.post("/create", authMiddleware, async (req, res) => {
       message: "Invalid input types",
     });
   }
+  const ExistingAssignment = await Assignment.findOne({
+    assignmentCode: req.body.assignmentCode,
+  });
 
+  if (ExistingAssignment) {
+    return res.status(411).json({
+      message: "Assignment Code is already taken",
+    });
+  }
   const assignment = await Assignment.create({
     teacherId: req.userId,
     assignmentCode: req.body.assignmentCode,
@@ -51,16 +59,16 @@ router.get("/view", authMiddleware, async (req, res) => {
 
 //view particular assignment
 router.get("/view/:Qno", authMiddleware, async (req, res) => {
-  const assignmentId = req.params.Qno;
+  const assignmentcode = req.params.Qno;
 
   try {
-    const assignment = await Assignment.findOne({
-      _id: assignmentId,
+    const answers = await Answers.find({
+      assignmentCode: assignmentcode,
     });
-    if (!assignment) {
-      return res.status(404).json({ message: "Assignment not found" });
+    if (!answers) {
+      return res.status(404).json({ message: "Submissions not found" });
     }
-    res.json({ assignment });
+    res.json({ answers });
   } catch (error) {
     console.error("Error fetching assignment:", error);
     res.status(500).json({ message: "Error fetching assignment" });
@@ -78,10 +86,18 @@ router.get("/Sview/:assignmentcode", authMiddleware, async (req, res) => {
     if (!assignment) {
       return res.status(404).json({ message: "Assignment not found" });
     }
+    // // Set a cookie with the assignment code
+    // res.cookie("assignmentCode", assignmentCode, {
+    //   httpOnly: true, // Recommended for security
+    //   secure: false, // Set to true if using HTTPS
+    //   sameSite: "lax", // Helps prevent CSRF attacks
+    //   maxAge: 60 * 60 * 1000, // 1 hour
+    // });
+
     res.json({ assignment });
   } catch (error) {
     console.error("Error fetching assignment:", error);
-    res.status(500).json({ message: "Error fetching assignment" });
+    res.status(500).json({ message: "Assignment Code is invalid" });
   }
 });
 module.exports = router;

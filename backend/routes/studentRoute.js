@@ -70,12 +70,32 @@ router.post("/signin", async (req, res) => {
   });
 
   if (user) {
+    // // Assuming you have access to the student's roll number and name
+    // const rollNumber = user.rollnumber;
+    // const name = user.username; // Or however you store the student's name
+
+    // // Set cookies with the student's roll number and name
+    // res.cookie("rollNumber", rollNumber, {
+    //   httpOnly: true,
+    //   secure: false, // Set to true if using HTTPS
+    //   sameSite: "lax",
+    //   maxAge: 60 * 60 * 24 * 7, // 1 week
+    // });
+
+    // res.cookie("name", name, {
+    //   httpOnly: true,
+    //   secure: false, // Set to true if using HTTPS
+    //   sameSite: "lax",
+    //   maxAge: 60 * 60 * 24 * 7, // 1 week
+    // });
+
     const token = jwt.sign(
       {
         userId: user._id,
       },
       JWT_SECRET
     );
+
     res.json({
       token: token,
     });
