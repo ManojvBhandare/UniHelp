@@ -38,6 +38,7 @@ router.post("/create", authMiddleware, async (req, res) => {
     title: req.body.title,
     questions: req.body.questions,
     plag: req.body.plag,
+    deadline: new Date(req.body.deadline),
   });
 
   res.status(200).json({ assignment });

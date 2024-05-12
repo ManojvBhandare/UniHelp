@@ -5,13 +5,16 @@ const z = require("zod");
 const { Answers } = require("../db");
 const { authMiddleware } = require("../middleware");
 const JWT_SECRET = process.env.JWT_SECRET;
+const ansBody = z.object({
+  questionId: z.string(),
+  answer: z.string(),
+});
 const AnswerBody = z.object({
   assignmentCode: z.string(),
   studentRollNumber: z.string(),
   studentName: z.string(),
-  answers: z.array(),
+  answers: z.array(ansBody),
   plagiarismReport: z.number().optional(),
-  time: z.date(),
 });
 
 router.post("/postanswer", authMiddleware, async (req, res) => {
@@ -29,7 +32,7 @@ router.post("/postanswer", authMiddleware, async (req, res) => {
       studentName: req.body.studentName,
       answers: req.body.answers,
       plagarismReport: req.body.plagarismReport,
-      time: req.body.time,
+      time: new Date(req.body.time),
     });
     res.json({ message: "Answer Submitted Succefully" });
   } catch (error) {
