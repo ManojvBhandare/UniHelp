@@ -3,6 +3,7 @@ const router = express.Router();
 const { authMiddleware } = require("../middleware");
 const { z } = require("zod");
 const { Assignment } = require("../db");
+const { default: mongoose } = require("mongoose");
 const questionBody = z.object({
   questionNumber: z.number(),
   questionText: z.string(),
@@ -55,6 +56,24 @@ router.get("/view/:Qno", authMiddleware, async (req, res) => {
   try {
     const assignment = await Assignment.findOne({
       _id: assignmentId,
+    });
+    if (!assignment) {
+      return res.status(404).json({ message: "Assignment not found" });
+    }
+    res.json({ assignment });
+  } catch (error) {
+    console.error("Error fetching assignment:", error);
+    res.status(500).json({ message: "Error fetching assignment" });
+  }
+});
+//view asssignment via assignment code
+router.get("/Sview/:assignmentcode", authMiddleware, async (req, res) => {
+  const assignmentCode = req.params.assignmentcode;
+  console.log("Received assignment code:", assignmentCode);
+
+  try {
+    const assignment = await Assignment.findOne({
+      assignmentCode: assignmentCode,
     });
     if (!assignment) {
       return res.status(404).json({ message: "Assignment not found" });
