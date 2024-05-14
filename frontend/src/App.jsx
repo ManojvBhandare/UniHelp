@@ -3,6 +3,7 @@ import { ForStudents } from "./pages/ForStudents";
 import { ForTeachers } from "./pages/ForTeachers";
 import { HomePage } from "./pages/HomePage";
 import { NavBar } from "./pages/NavBar";
+import { TeacherSignin } from "./pages/TeacherSignin";
 import { WhyUnihelp } from "./pages/WhyUnihelp";
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <ForTeachers />
         <ForStudents />
         <WhyUnihelp />
+        <TeacherSignin />
       </div>
     </div>
   );
