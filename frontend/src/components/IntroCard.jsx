@@ -19,12 +19,16 @@ export const IntroCard = ({ Imglink, Heading, bgcolor }) => {
 
   return (
     <div
-      className={`w-[22rem] h-[10rem] ${bgClass} ${textColor} rounded-2xl flex justify-center items-center gap-3 p-[1.5rem]`}
+      className={`md:w-[22rem] md:h-[10rem] w-[16rem] h-[15rem] ${bgClass} ${textColor} rounded-2xl flex justify-center md:flex-row flex-col items-center gap-3 md:p-[1.5rem] p-[1rem]`}
     >
-      <div className="bg-white w-[7rem] h-[7rem] rounded-2xl flex justify-center">
-        <img src={Imglink} alt="" className="w-[5rem] h-[7rem]" />
+      <div className="bg-white md:w-[7rem] md:h-[7rem] h-[8rem] w-[9rem] rounded-2xl flex justify-center">
+        <img
+          src={Imglink}
+          alt=""
+          className="md:w-[5rem] md:h-[7rem] w-[5rem]"
+        />
       </div>
-      <h1 className="text-[1.6rem] font-bold">{Heading}</h1>
+      <h1 className="text-[1.6rem]  font-bold">{Heading}</h1>
     </div>
   );
 };
