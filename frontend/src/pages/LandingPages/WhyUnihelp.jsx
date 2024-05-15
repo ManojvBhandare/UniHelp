@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import bg from "../../assets/Bg-last.svg";
 
 export const WhyUnihelp = () => {
   // Initialize state for the current sentence and its index
@@ -28,11 +29,7 @@ export const WhyUnihelp = () => {
         Why UniHelp?
       </h1>
       <div className="flex flex-col items-center justify-center md:w-[90%] md:h-[70%] relative  w-full">
-        <img
-          src="Bg-last.svg"
-          alt=""
-          className="absolute z-0 md:w-[95%] w-full"
-        />
+        <img src={bg} alt="" className="absolute z-0 md:w-[95%] w-full" />
         <div className="flex items-center justify-center z-10">
           {/* Use currentIndex to dynamically select the current sentence */}
           <div

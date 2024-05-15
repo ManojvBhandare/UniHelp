@@ -49,12 +49,17 @@ router.get("/view", authMiddleware, async (req, res) => {
     const assignments = await Assignment.find({
       teacherId: req.userId,
     });
+
+    if (assignments.length === 0) {
+      throw new Error("No Assignments Created");
+    }
+
     res.json({
       assignments: assignments,
     });
   } catch (error) {
     console.error("Error fetching assignments:", error);
-    res.status(500).json({ message: "Error fetching assignments" });
+    res.status(500).json({ message: error.message });
   }
 });
 

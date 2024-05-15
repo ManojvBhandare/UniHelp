@@ -22,7 +22,7 @@ const TeacherSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minLength: 6,
+    minLength: 3,
   },
   subject: {
     type: String,

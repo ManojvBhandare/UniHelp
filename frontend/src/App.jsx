@@ -1,22 +1,31 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { ForStudents } from "./pages/ForStudents";
-import { ForTeachers } from "./pages/ForTeachers";
-import { HomePage } from "./pages/HomePage";
-import { NavBar } from "./pages/NavBar";
-import { TeacherSignin } from "./pages/TeacherSignin";
-import { WhyUnihelp } from "./pages/WhyUnihelp";
+
+import { CreateAssignments } from "./pages/CreateAssignment";
+import { LandingPage } from "./pages/LandingPages/LandingPage";
+import { TeacherSignIn } from "./pages/LoginPages/TeacherSignIn";
+import { TeacherSignUp } from "./pages/LoginPages/TeacherSignUp";
+import { TeacherDashboard } from "./pages/TeacherDashboard";
 function App() {
   return (
-    <div className="flex items-center justify-center flex-col">
-      <NavBar />
-      <div className="md:pt-[4rem] pt-[6rem]">
-        <HomePage />
-        <ForTeachers />
-        <ForStudents />
-        <WhyUnihelp />
-        <TeacherSignin />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/teacher/*" element={<TeacherRoutes />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function TeacherRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<TeacherSignUp />} />
+      <Route path="signup" element={<TeacherSignUp />} />
+      <Route path="signin" element={<TeacherSignIn />} />
+      <Route path="dashboard" element={<TeacherDashboard />} />
+      <Route path="createassignment" element={<CreateAssignments />} />
+    </Routes>
   );
 }
 

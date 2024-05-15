@@ -29,21 +29,28 @@ router.post("/signup", async (req, res) => {
       message: "User already exists",
     });
   }
-  const user = await Teacher.create({
-    mailId: req.body.mailId,
-    username: req.body.username,
-    password: req.body.password,
-    subject: req.body.subject,
-  });
+  try {
+    const user = await Teacher.create({
+      mailId: req.body.mailId,
+      username: req.body.username,
+      password: req.body.password,
+      subject: req.body.subject,
+    });
 
-  const userId = user._id;
+    const userId = user._id;
 
-  const token = jwt.sign({ userId }, JWT_SECRET);
+    const token = jwt.sign({ userId }, JWT_SECRET);
 
-  res.json({
-    message: "Teacher account created Successfully!",
-    token: token,
-  });
+    res.json({
+      message: "Teacher account created Successfully!",
+      token: token,
+    });
+  } catch (error) {
+    console.error("Error creating teacher account:", error);
+    res.status(500).json({
+      message: "Error creating teacher account",
+    });
+  }
 });
 const signinBody = z.object({
   mailId: z.string().email(),

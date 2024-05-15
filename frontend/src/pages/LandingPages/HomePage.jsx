@@ -1,12 +1,16 @@
-import { IntroCard } from "../components/IntroCard";
+import Teachers from "../../assets/Teachers.svg";
+import book from "../../assets/book.svg";
+import pen from "../../assets/pen 1.svg";
+import student from "../../assets/student.svg";
+import { IntroCard } from "../../components/IntroCard";
 
-export const HomePage = () => {
+export const HomePage = ({ scrollToSection, refs }) => {
   return (
     <div className="min-h-screen flex items-center justify-center md:pt-16 lg:-mt-12">
       <div className="flex flex-col items-center justify-center bg-[#F5F4F4] w-[90%] md:w-[90%] lg:w-[90%] overflow-auto md:p-[5rem] py-[1.2rem] rounded-2xl">
         <div className="flex flex-col md:flex-row items-center justify-between w-full px-[1rem] md:px-[6rem] space-y-4 md:space-y-0">
           <img
-            src="book.svg"
+            src={book}
             alt="Book Photo"
             className="hidden md:block w-12 h-12 md:w-auto md:h-auto"
           />
@@ -14,7 +18,7 @@ export const HomePage = () => {
             Where Teachers and Students Meet Integrity
           </h1>
           <img
-            src="pen 1.svg"
+            src={pen}
             alt="Pen Photo"
             className="hidden md:block w-12 h-12 md:w-auto md:h-auto"
           />
@@ -35,12 +39,22 @@ export const HomePage = () => {
         </div>
         <div className="pt-[2rem] flex flex-col md:flex-row items-center justify-center gap-6 w-full">
           <IntroCard
-            Imglink={"Teachers.svg"}
+            Imglink={Teachers}
             Heading={"For Teachers"}
             bgcolor={"blue"}
+            goto={refs.teachersRef}
+            scrollToSection={scrollToSection}
           />
-          <IntroCard Imglink={"student.svg"} Heading={"For Students"} />
-          <div className="w-[16rem] md:w-[18rem] h-[6rem] md:h-[8rem] lg:h-[10rem] rounded-2xl flex justify-center items-center gap-3 p-[1rem] bg-[#E0E01E]">
+          <IntroCard
+            Imglink={student}
+            Heading={"For Students"}
+            goto={refs.studentsRef}
+            scrollToSection={scrollToSection}
+          />
+          <div
+            className="w-[16rem] md:w-[18rem] h-[6rem] md:h-[8rem] lg:h-[10rem] rounded-2xl flex justify-center items-center gap-3 p-[1rem] bg-[#E0E01E] cursor-pointer"
+            onClick={() => scrollToSection(refs.whyUnihelpRef)}
+          >
             <h1 className="text-[1rem] md:text-[1.25rem] lg:text-[1.5rem] font-bold text-center">
               Why UniHelp?
             </h1>
