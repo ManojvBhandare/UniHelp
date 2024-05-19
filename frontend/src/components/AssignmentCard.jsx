@@ -19,7 +19,7 @@ function AssignmentCard({ title, code }) {
 
   return (
     <div
-      className="relative h-[6rem] shadow-md rounded-2xl flex justify-start items-center bg-white p-[1rem]"
+      className="relative h-[6rem] shadow-md rounded-2xl flex justify-start items-center bg-white p-[1rem] w-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

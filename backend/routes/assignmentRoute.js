@@ -5,6 +5,7 @@ const { z } = require("zod");
 const { Assignment, Answers } = require("../db");
 const { default: mongoose } = require("mongoose");
 const questionBody = z.object({
+  question_id: z.string(),
   questionNumber: z.number(),
   questionText: z.string(),
 });
@@ -38,7 +39,7 @@ router.post("/create", authMiddleware, async (req, res) => {
     title: req.body.title,
     questions: req.body.questions,
     plag: req.body.plag,
-    deadline: new Date(req.body.deadline),
+    deadline: req.body.deadline,
   });
 
   res.status(200).json({ assignment });

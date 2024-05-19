@@ -9,11 +9,11 @@ const TeacherSchema = new mongoose.Schema({
     type: String,
     required: true,
     lowercase: true,
+    unique: true,
   },
   username: {
     type: String,
     required: true,
-    unique: true,
     trim: true,
     lowercase: true,
     minLength: 3,
@@ -36,6 +36,7 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true,
     lowercase: true,
+    unique: true,
   },
   username: {
     type: String,
@@ -62,6 +63,10 @@ const StudentSchema = new mongoose.Schema({
 });
 
 const QuestionSchema = new mongoose.Schema({
+  question_Id: {
+    type: String,
+    required: false,
+  },
   questionNumber: {
     type: Number,
     required: true,
@@ -81,6 +86,7 @@ const AssignmentSchema = new mongoose.Schema({
   assignmentCode: {
     type: String,
     required: true,
+    unique: true,
   },
   title: {
     type: String,
@@ -88,7 +94,11 @@ const AssignmentSchema = new mongoose.Schema({
     minLength: 3,
     maxLength: 30,
   },
-  questions: [QuestionSchema],
+  questions: [
+    {
+      type: QuestionSchema,
+    },
+  ],
   plag: {
     type: Boolean,
     required: true,

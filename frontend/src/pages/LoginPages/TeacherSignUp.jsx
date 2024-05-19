@@ -26,13 +26,16 @@ export const TeacherSignUp = () => {
           subject: subject,
         }
       );
+      // Assuming the server returns a token upon successful signup
       localStorage.setItem("token", response.data.token);
       navigate("/teacher/dashboard");
       console.log("Form submitted successfully:", response.data);
     } catch (error) {
+      // Expanded error handling to catch more generic server errors
       if (error.response && error.response.status === 411) {
         setError(error.response.data.message);
       } else {
+        setError(`An error occurred: ${error.message}`);
         console.error("Error submitting form:", error);
       }
     }
@@ -41,7 +44,12 @@ export const TeacherSignUp = () => {
   return (
     <div className="min-h-screen flex justify-center items-center">
       <div className="bg-[#F2F2F2] w-[95%] sm:w-3/4 md:w-[25%] h-auto md:h-[65%] rounded-xl flex flex-col justify-center items-center gap-6 border-solid border-black border-2 p-4 md:p-5 md:pt-10 ">
-        <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl">Sign Up</h1>
+        <h1
+          className="font-bold text-2xl md:text-3xl lg:text-4xl"
+          aria-label="Sign Up Title"
+        >
+          Sign Up
+        </h1>
         <div className="grid grid-rows-5 grid-cols-1 justify-items-center gap-2 w-[90%]  p-5">
           <input
             type="email"
@@ -71,6 +79,7 @@ export const TeacherSignUp = () => {
           <button
             className="w-full md:w-3/4 lg:w-2/3 bg-black text-white rounded-lg font-medium py-2 md:py-3 lg:py-4"
             onClick={handleSubmit}
+            aria-label="Submit Signup Form"
           >
             Sign Up
           </button>
@@ -80,6 +89,7 @@ export const TeacherSignUp = () => {
           <Link
             className="pointer underline pl-1 text-blue-800 cursor-pointer"
             to="/teacher/signin"
+            aria-label="Go to Sign In Page"
           >
             SignIn
           </Link>
