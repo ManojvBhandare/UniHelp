@@ -1,9 +1,19 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
+
+// Load environment variables
 const mongoUrl = process.env.MONGO_URL;
 
-mongoose.connect(mongoUrl);
+// Connect to MongoDB
+mongoose
+  .connect(mongoUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected..."))
+  .catch((err) => console.error("Connection error", err));
 
+// Define Schemas
 const TeacherSchema = new mongoose.Schema({
   mailId: {
     type: String,
@@ -138,22 +148,20 @@ const AnswerSchema = new mongoose.Schema({
   time: {
     type: Date,
     required: true,
+    default: Date.now,
   },
 });
 
+// Create Models
 const Teacher = mongoose.model("Teacher", TeacherSchema);
 const Student = mongoose.model("Student", StudentSchema);
 const Assignment = mongoose.model("Assignment", AssignmentSchema);
 const Answers = mongoose.model("Answers", AnswerSchema);
 
+// Export Models
 module.exports = {
   Teacher,
   Student,
   Assignment,
   Answers,
 };
-
-//teacher - name, subject,password , assign link
-//assignment - Teacher code(Index of teacher) ,Assignment code,Assignment title Questions
-//student - Student Name,Student roll number,password
-//answer-Assignment code, Student name/Usn,Answers,plagarism percent,timestamp
