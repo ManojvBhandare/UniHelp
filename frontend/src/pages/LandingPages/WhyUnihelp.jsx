@@ -24,7 +24,7 @@ export const WhyUnihelp = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="bg-black md:h-screen flex flex-col justify-center items-center p-[2rem] h-[16rem] gap-[4rem] md:gap-3 ">
+    <div className="bg-black mt-12 md:h-screen flex flex-col justify-center items-center p-[2rem] h-[16rem] gap-[4rem] md:gap-3 ">
       <h1 className="font-bold md:text-[4rem] text-[1.5rem] text-white ">
         Why UniHelp?
       </h1>
