@@ -18,7 +18,7 @@ export const ForStudents = () => {
           assignments, complete them online, and submit their work confidently.
           With UniHelp's plagiarism detection system, you can be sure that your
           submissions are original and authentic. Join us in promoting academic
-          integrity and fostering genuine learning experiences."
+          integrity and fostering genuine learning experiences. "
         </p>
 
         <div className="flex flex-col items-center justify-center md:justify-center">
