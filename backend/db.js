@@ -50,7 +50,6 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     unique: true,
     minLength: 2,
-    maxLength: 6,
     required: true,
     lowercase: true,
   },

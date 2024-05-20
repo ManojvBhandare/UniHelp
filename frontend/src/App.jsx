@@ -3,6 +3,7 @@ import "./App.css";
 
 import { CreateAssignments } from "./pages/CreateAssignment";
 import { LandingPage } from "./pages/LandingPages/LandingPage";
+import { StudentSignUp } from "./pages/LoginPages/StudentSignUp";
 import { TeacherSignIn } from "./pages/LoginPages/TeacherSignIn";
 import { TeacherSignUp } from "./pages/LoginPages/TeacherSignUp";
 import { TeacherDashboard } from "./pages/TeacherDashboard";
@@ -12,8 +13,18 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/teacher/*" element={<TeacherRoutes />} />
+        <Route path="/student/*" element={<StudentRoutes />} />
       </Routes>
     </BrowserRouter>
+  );
+}
+
+function StudentRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<StudentSignUp />} />
+      <Route path="signup" element={<StudentSignUp />} />
+    </Routes>
   );
 }
 
