@@ -8,7 +8,7 @@ export const TeacherDashboard = () => {
   const [assignments, setAssignments] = useState([]);
   const [noassignments, setNoAssignments] = useState(true);
   const [errors, setError] = useState("");
-
+  const isLogged = localStorage.getItem("User");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,7 +42,7 @@ export const TeacherDashboard = () => {
     fetchData();
   }, []);
 
-  return (
+  return isLogged === "teacher" ? (
     <div className="h-screen w-screen">
       <div className="p-[2rem] h-full flex flex-col gap-2">
         <h1 className="text-[3rem] font-bold">Your Dashboard</h1>
@@ -73,6 +73,8 @@ export const TeacherDashboard = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <div>You are not authorized to view this page</div>
   );
 };
 

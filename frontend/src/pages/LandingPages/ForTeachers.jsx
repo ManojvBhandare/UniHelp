@@ -10,7 +10,7 @@ import { IntroLogin } from "../../components/IntroLogin";
 
 export const ForTeachers = () => {
   return (
-    <div className="min-h-screen flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 p-4 md:p-8 overflow-x-hidden">
+    <div className="min-h-screen flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 p-4 md:p-8 overflow-x-hidden ">
       <div className="flex flex-col md:w-1/3 gap-4 items-center md:items-start md:justify-center">
         <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl text-center md:text-left">
           For Teachers
@@ -32,7 +32,7 @@ export const ForTeachers = () => {
         <img
           src={bg}
           alt=""
-          className="absolute rotate-[154deg] md:rotate-0 h-32 md:h-56 z-0"
+          className="absolute rotate-[154deg] md:rotate-0 h-32 md:h-full md:w-full z-0"
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 z-10 w-full max-w-3xl">
           <FeatureCard

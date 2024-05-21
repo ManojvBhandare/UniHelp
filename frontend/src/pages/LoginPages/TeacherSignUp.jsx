@@ -8,6 +8,7 @@ export const TeacherSignUp = () => {
   const [password, setPassword] = useState("");
   const [subject, setSubject] = useState("");
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -26,11 +27,13 @@ export const TeacherSignUp = () => {
           subject: subject,
         }
       );
+      localStorage.setItem("User", "teacher");
       // Assuming the server returns a token upon successful signup
       localStorage.setItem("token", response.data.token);
       navigate("/teacher/dashboard");
       console.log("Form submitted successfully:", response.data);
     } catch (error) {
+      localStorage.setItem("User", None);
       // Expanded error handling to catch more generic server errors
       if (error.response && error.response.status === 411) {
         setError(error.response.data.message);

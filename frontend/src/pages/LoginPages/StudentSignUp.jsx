@@ -26,11 +26,13 @@ export const StudentSignUp = () => {
           password: password,
         }
       );
+      localStorage.setItem("User", "student");
       // Assuming the server returns a token upon successful signup
       localStorage.setItem("token", response.data.token);
-      // navigate("/teacher/dashboard");
+      navigate("/student/entry");
       console.log("Form submitted successfully:", response.data);
     } catch (error) {
+      localStorage.setItem("User", None);
       // Expanded error handling to catch more generic server errors
       if (error.response && error.response.status === 411) {
         setError(error.response.data.message);
@@ -88,7 +90,7 @@ export const StudentSignUp = () => {
           <p className="">Already have an account?</p>
           <Link
             className="pointer underline pl-1 text-blue-800 cursor-pointer"
-            to="/teacher/signin"
+            to="/student/signin"
             aria-label="Go to Sign In Page"
           >
             SignIn

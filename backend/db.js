@@ -6,10 +6,7 @@ const mongoUrl = process.env.MONGO_URL;
 
 // Connect to MongoDB
 mongoose
-  .connect(mongoUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(mongoUrl)
   .then(() => console.log("MongoDB connected..."))
   .catch((err) => console.error("Connection error", err));
 

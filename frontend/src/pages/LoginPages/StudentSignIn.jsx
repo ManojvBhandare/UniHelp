@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const TeacherSignIn = () => {
+export const StudentSignIn = () => {
   const [mail, setMail] = useState("");
 
   const [password, setPassword] = useState("");
@@ -18,15 +18,15 @@ export const TeacherSignIn = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:3000/unihelp/teacher/signin",
+        "http://localhost:3000/unihelp/student/signin",
         {
           mailId: mail,
           password: password,
         }
       );
-      localStorage.setItem("User", "teacher");
+      localStorage.setItem("User", "student");
       localStorage.setItem("token", response.data.token);
-      navigate("/teacher/dashboard");
+      navigate("/student/entry");
       console.log("Form submitted successfully:", response.data);
     } catch (error) {
       localStorage.setItem("User", None);

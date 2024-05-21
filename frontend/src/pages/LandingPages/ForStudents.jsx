@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import bg from "../../assets/Bg-blue.svg";
 import cloud from "../../assets/Upload.svg";
 import check from "../../assets/check.svg";
@@ -8,8 +9,8 @@ import { IntroLogin } from "../../components/IntroLogin";
 
 export const ForStudents = () => {
   return (
-    <div className="min-h-screen flex flex-col md:flex-row justify-center items-center mt-12">
-      <div className="flex flex-col p-4 md:w-1/2 gap-6 md:items-start md:justify-center">
+    <div className="min-h-screen flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 p-4 md:p-8 overflow-x-hidden">
+      <div className="flex flex-col p-4 md:w-1/3 gap-6 md:items-start md:justify-center">
         <h1 className="font-bold text-[2rem] md:text-[2rem] lg:text-[3rem]">
           For Students
         </h1>
@@ -22,10 +23,12 @@ export const ForStudents = () => {
         </p>
 
         <div className="flex flex-col items-center justify-center md:justify-center">
-          <IntroLogin imgLink={student} />
+          <Link className="cursor-pointer" to="/student/signup">
+            <IntroLogin imgLink={student} />
+          </Link>
         </div>
       </div>
-      <div className="md:w-[100%] md: -mt-24 md:mt-0 relative  md:flex justify-center grid grid-flow-row justify-items-center items-center">
+      <div className="md:w-[50%] md: -mt-24 md:mt-0 relative  md:flex justify-center grid grid-flow-row justify-items-center items-center    ">
         <img
           src={bg}
           alt=""
