@@ -88,7 +88,9 @@ export const CreateAssignments = () => {
     // sendDataToBackend(formattedQuestions, assCode, assignmenttitle, deadLine, isOn, deadLine);
   }
 
-  return (
+  const isLogged = localStorage.getItem("isLogged");
+
+  return isLogged === "teacher" ? (
     <div className="h-screen w-screen flex justify-center items-center">
       <div className="bg-[#D6DDFC] w-[95%] h-[95%] rounded-xl p-[1rem] flex flex-col gap-8 justify-start items-center">
         <div className="flex justify-between w-full">
@@ -172,5 +174,7 @@ export const CreateAssignments = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <div>You are not authorized to view this page</div>
   );
 };

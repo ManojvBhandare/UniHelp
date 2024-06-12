@@ -29,7 +29,7 @@ export const StudentSignIn = () => {
       navigate("/student/entry");
       console.log("Form submitted successfully:", response.data);
     } catch (error) {
-      localStorage.setItem("User", None);
+      localStorage.setItem("User", null);
       if (error.response && error.response.status === 411) {
         setError(error.response.data.message);
       } else {

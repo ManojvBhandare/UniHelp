@@ -46,7 +46,7 @@ export const TeacherDashboard = () => {
     <div className="h-screen w-screen">
       <div className="p-[2rem] h-full flex flex-col gap-2">
         <h1 className="text-[3rem] font-bold">Your Dashboard</h1>
-        <div className="flex gap-5">
+        <div className="flex gap-5 cursor-pointer">
           <DashboardCard img={pen} title={"Create Assignment:"} />
         </div>
         <div className="bg-[#D6DDFC] w-full h-[80%] rounded-xl p-[1.5rem] flex flex-col gap-6 relative mt-2">

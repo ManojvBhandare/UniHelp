@@ -15,6 +15,7 @@ const assignmentBody = z.object({
   questions: z.array(questionBody),
   plag: z.boolean(),
 });
+
 //create assignment
 router.post("/create", authMiddleware, async (req, res) => {
   const { success } = assignmentBody.safeParse(req.body);
@@ -107,4 +108,29 @@ router.get("/Sview/:assignmentcode", authMiddleware, async (req, res) => {
     res.status(500).json({ message: "Assignment Code is invalid" });
   }
 });
+
+// router.post("/submit", authMiddleware, async (req, res) => {
+//   try {
+//     try {
+//       const student = await student.findOne({
+//         _id: req.userId,
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//     const answer = await Answers.create({
+//       assignmentCode: req.body.assignmentCode,
+//       studentRollNumber: student.rollnumber,
+//       studentName: student.username,
+//       answers: req.body.answers,
+//       plagarismReport: 90,
+//       time: req.body.time,
+//     });
+
+//     res.status(200).json({ answer });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//     console.log(error);
+//   }
+// });
 module.exports = router;
